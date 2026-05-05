@@ -12,11 +12,11 @@ let students = [
 ];
 
 app.get("/", (req, res) => {
-  res.send("Backend API is running successfully");
+  res.send("Backend running successfully");
 });
 
 app.get("/students", (req, res) => {
-  res.status(200).json(students);
+  res.json(students);
 });
 
 app.post("/students", (req, res) => {
@@ -38,16 +38,6 @@ app.post("/students", (req, res) => {
   res.status(201).json({
     message: "Student added successfully",
     student: newStudent
-  });
-});
-
-app.delete("/students/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  students = students.filter((student) => student.id !== id);
-
-  res.status(200).json({
-    message: "Student deleted successfully"
   });
 });
 
