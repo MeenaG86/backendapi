@@ -11,15 +11,15 @@ let students = [
   { id: 2, name: "Suba", course: "React", status: "Completed" }
 ];
 
-app.get("/api", (req, res) => {
-  res.send("Backend API is running successfully");
+app.get("/", (req, res) => {
+  res.send("Backend running successfully");
 });
 
-app.get("/api/students", (req, res) => {
-  res.status(200).json(students);
+app.get("/students", (req, res) => {
+  res.json(students);
 });
 
-app.post("/api/students", (req, res) => {
+app.post("/students", (req, res) => {
   const { name, course, status } = req.body;
 
   if (!name || !course || !status) {
@@ -40,9 +40,16 @@ app.post("/api/students", (req, res) => {
     student: newStudent
   });
 });
-
-app.delete("/api/students/:id", (req, res) => {
+app.delete("/students/:id", (req, res) => {
   const id = Number(req.params.id);
+
+  const studentExists = students.find((student) => student.id === id);
+
+  if (!studentExists) {
+    return res.status(404).json({
+      message: "Student not found"
+    });
+  }
 
   students = students.filter((student) => student.id !== id);
 
@@ -50,7 +57,6 @@ app.delete("/api/students/:id", (req, res) => {
     message: "Student deleted successfully"
   });
 });
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
