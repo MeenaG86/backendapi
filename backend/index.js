@@ -11,15 +11,15 @@ let students = [
   { id: 2, name: "Suba", course: "React", status: "Completed" }
 ];
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Backend API is running successfully");
 });
 
-app.get("/students", (req, res) => {
+app.get("/api/students", (req, res) => {
   res.status(200).json(students);
 });
 
-app.post("/students", (req, res) => {
+app.post("/api/students", (req, res) => {
   const { name, course, status } = req.body;
 
   if (!name || !course || !status) {
@@ -41,7 +41,7 @@ app.post("/students", (req, res) => {
   });
 });
 
-app.delete("/students/:id", (req, res) => {
+app.delete("/api/students/:id", (req, res) => {
   const id = Number(req.params.id);
 
   students = students.filter((student) => student.id !== id);
