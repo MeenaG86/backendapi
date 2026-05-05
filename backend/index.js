@@ -40,7 +40,23 @@ app.post("/students", (req, res) => {
     student: newStudent
   });
 });
+app.delete("/students/:id", (req, res) => {
+  const id = Number(req.params.id);
 
+  const studentExists = students.find((student) => student.id === id);
+
+  if (!studentExists) {
+    return res.status(404).json({
+      message: "Student not found"
+    });
+  }
+
+  students = students.filter((student) => student.id !== id);
+
+  res.status(200).json({
+    message: "Student deleted successfully"
+  });
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
