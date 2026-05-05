@@ -8,7 +8,7 @@ function App() {
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
 
-  const API_URL = "https://backendapi-ashy-beta.vercel.app/api/students";
+  const API_URL = "https://backendapi-g91m.onrender.com/students";
 
   function getStudents() {
     axios
