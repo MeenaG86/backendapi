@@ -3,13 +3,8 @@ const cors = require("cors");
 
 const app = express();
 
-module.exports = app;
-
-
 app.use(cors());
 app.use(express.json());
-
-
 
 let students = [
   { id: 1, name: "Meena", course: "Full Stack Development", status: "Learning" },
@@ -37,7 +32,7 @@ app.post("/students", (req, res) => {
   }
 
   const newStudent = {
-    id: students.length + 1,
+    id: Date.now(),
     name,
     course,
     status
@@ -69,6 +64,5 @@ app.delete("/students/:id", (req, res) => {
     message: "Student deleted successfully"
   });
 });
-/*app.listen(5000, () => {
-  console.log("Server running on port 5000");
-});*/
+
+module.exports = app;
