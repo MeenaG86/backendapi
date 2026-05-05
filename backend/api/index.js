@@ -17,12 +17,12 @@ app.get("/", (req, res) => {
 });
 
 // GET all students
-app.get("/students", (req, res) => {
+app.get("/api/students", (req, res) => {
   res.status(200).json(students);
 });
 
 // POST add student
-app.post("/students", (req, res) => {
+app.post("/api/students", (req, res) => {
   const { name, course, status } = req.body;
 
   if (!name || !course || !status) {
@@ -47,7 +47,7 @@ app.post("/students", (req, res) => {
 });
 
 // DELETE student
-app.delete("/students/:id", (req, res) => {
+app.delete("/api/students/:id", (req, res) => {
   const id = Number(req.params.id);
 
   const studentExists = students.find((student) => student.id === id);

@@ -8,7 +8,7 @@ function App() {
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
 
-  const API_URL = "https://backendapi-azure-one.vercel.app/api/students";
+  const API_URL = "https://backendapi-ashy-beta.vercel.app/api/students";
 
   function getStudents() {
     axios
