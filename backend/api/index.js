@@ -11,24 +11,19 @@ let students = [
   { id: 2, name: "Suba", course: "React", status: "Completed" }
 ];
 
-// Home API
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Backend API is running successfully");
 });
 
-// GET all students
 app.get("/api/students", (req, res) => {
   res.status(200).json(students);
 });
 
-// POST add student
 app.post("/api/students", (req, res) => {
   const { name, course, status } = req.body;
 
   if (!name || !course || !status) {
-    return res.status(400).json({
-      message: "All fields are required"
-    });
+    return res.status(400).json({ message: "All fields are required" });
   }
 
   const newStudent = {
@@ -46,17 +41,8 @@ app.post("/api/students", (req, res) => {
   });
 });
 
-// DELETE student
 app.delete("/api/students/:id", (req, res) => {
   const id = Number(req.params.id);
-
-  const studentExists = students.find((student) => student.id === id);
-
-  if (!studentExists) {
-    return res.status(404).json({
-      message: "Student not found"
-    });
-  }
 
   students = students.filter((student) => student.id !== id);
 
