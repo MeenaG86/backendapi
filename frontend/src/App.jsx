@@ -8,7 +8,7 @@ function App() {
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
 
-  const API_URL = "http://localhost:5000/students";
+  const API_URL = "https://backendapi-cyan.vercel.app/students";
 
   function getStudents() {
     axios
